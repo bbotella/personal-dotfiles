@@ -1,6 +1,10 @@
 # dotfiles
 My dotfiles!
 
+Based on cchacin's dotfiles. Thanks!
+https://github.com/cchacin/dotfiles
+
+
 ### Using GNU Stow
 
 > [GNU Stow][1] is a symlink farm manager which takes distinct sets of software and/or data located in separate directories on the filesystem, and makes them all appear to be installed in a single directory tree.
