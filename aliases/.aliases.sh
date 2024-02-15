@@ -1,0 +1,1 @@
+alias ggb="./gradlew clean && ./gradlew build"
