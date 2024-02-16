@@ -38,3 +38,6 @@ antidote load
 # Using zoxide instead of cd
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh --cmd cd)"
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
