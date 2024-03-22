@@ -5,3 +5,4 @@
 /ssh/.ssh/known_hosts
 /ssh/.ssh/known_hosts.old
 /ssh/.ssh/logs/rkcli.log
+*.zwc
