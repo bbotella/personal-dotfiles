@@ -41,3 +41,5 @@ eval "$(zoxide init zsh --cmd cd)"
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+
+eval "$(fzf --zsh)"
