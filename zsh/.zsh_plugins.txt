@@ -1,5 +1,4 @@
 ohmyzsh/ohmyzsh path:plugins/gpg-agent
-ohmyzsh/ohmyzsh path:plugins/autojump
 ohmyzsh/ohmyzsh path:plugins/aws
 ohmyzsh/ohmyzsh path:plugins/brew
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
@@ -13,11 +12,8 @@ ohmyzsh/ohmyzsh path:plugins/history
 ohmyzsh/ohmyzsh path:lib/history.zsh
 ohmyzsh/ohmyzsh path:plugins/nvm
 ohmyzsh/ohmyzsh path:plugins/mvn
-mroth/evalcache
-ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/rbenv
 ohmyzsh/ohmyzsh path:plugins/jenv
-marlonrichert/zsh-autocomplete
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 
