@@ -31,12 +31,13 @@ source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 # antidote load 2>/dev/null
 antidote load
 
-bindkey '^[b' backward-word
-bindkey '^[f' forward-word
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-autoload -U select-word-style
-select-word-style bash 
+#bindkey '^[b' backward-word
+#bindkey '^[f' forward-word
+#bindkey '^A' beginning-of-line
+#bindkey '^E' end-of-line
+#autoload -U select-word-style
+#select-word-style bash 
+#bindkey -e
 
 # To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh

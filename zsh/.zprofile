@@ -17,10 +17,10 @@ fi
 # Editors
 #
 if [[ -z "$EDITOR" ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vim'
 fi
 if [[ -z "$VISUAL" ]]; then
-  export VISUAL='nvim'
+  export VISUAL='vim'
 fi
 if [[ -z "$PAGER" ]]; then
   export PAGER='less'
