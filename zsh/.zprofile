@@ -42,9 +42,9 @@ typeset -gU cdpath fpath path
 
 # Zsh search path for executable
 path=(
+  /opt/{homebrew,local}/{,s}bin(N)
   $HOME/{,s}bin(N)
   $HOME/scripts
-  /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
   $path
 )
