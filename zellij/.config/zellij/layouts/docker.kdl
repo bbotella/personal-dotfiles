@@ -1,0 +1,37 @@
+// Docker/Container Management Layout
+// Usage: zellij --layout docker
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    
+    pane split_direction="horizontal" {
+        // Main commands area
+        pane size="50%" split_direction="vertical" {
+            pane {
+                name "docker-cmd"
+            }
+            pane {
+                name "k8s-cmd"
+            }
+        }
+        
+        // Monitoring area
+        pane size="50%" split_direction="vertical" {
+            // Docker monitoring
+            pane {
+                name "docker-monitor"
+                command "lazydocker"
+            }
+            
+            // Container logs
+            pane {
+                name "logs"
+            }
+        }
+    }
+    
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Zellij Session Launcher
+# Quick way to start different workspace layouts
+
+set -e
+
+# Colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+show_help() {
+    echo -e "${BLUE}🚀 Zellij Session Launcher${NC}"
+    echo
+    echo "Usage: $0 [session-type] [session-name]"
+    echo
+    echo -e "${GREEN}Available session types:${NC}"
+    echo "  default       - Standard Zellij session (your current setup)"
+    echo "  sysadmin      - System administration layout with monitoring"
+    echo "  docker        - Container management with Docker/K8s tools"
+    echo "  dev           - Development layout with file browser and git"
+    echo "  work          - Xerador project workspace"
+    echo
+    echo -e "${GREEN}Examples:${NC}"
+    echo "  $0 default my-session    # Standard session"
+    echo "  $0 sysadmin server-work  # System admin layout"
+    echo "  $0 docker containers     # Docker management"
+    echo "  $0 work xerador          # Work project"
+    echo
+    echo -e "${YELLOW}Note: Default behavior (no args) starts your normal Zellij session${NC}"
+}
+
+launch_session() {
+    local session_type="${1:-default}"
+    local session_name="${2:-main}"
+    
+    case "$session_type" in
+        "default")
+            echo -e "${GREEN}🖥️  Starting default Zellij session: $session_name${NC}"
+            zellij --session "$session_name"
+            ;;
+        "sysadmin")
+            echo -e "${GREEN}🔧 Starting system administration session: $session_name${NC}"
+            zellij --layout sysadmin --session "$session_name"
+            ;;
+        "docker")
+            echo -e "${GREEN}🐳 Starting Docker management session: $session_name${NC}"
+            zellij --layout docker --session "$session_name"
+            ;;
+        "dev")
+            echo -e "${GREEN}💻 Starting development session: $session_name${NC}"
+            zellij --layout dev --session "$session_name"
+            ;;
+        "work")
+            echo -e "${GREEN}🏢 Starting work project session: $session_name${NC}"
+            zellij --layout work --session "$session_name"
+            ;;
+        "help"|"-h"|"--help")
+            show_help
+            exit 0
+            ;;
+        *)
+            echo -e "${YELLOW}Unknown session type: $session_type${NC}"
+            echo
+            show_help
+            exit 1
+            ;;
+    esac
+}
+
+# Handle no arguments - start default session
+if [ $# -eq 0 ]; then
+    echo -e "${GREEN}🚀 Starting default Zellij session${NC}"
+    zellij
+else
+    launch_session "$@"
+fi

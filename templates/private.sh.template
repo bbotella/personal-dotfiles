@@ -1,0 +1,27 @@
+# Private configuration template
+# Copy this file to ~/.private.sh and add your sensitive configurations
+
+# Personal API keys (never commit these!)
+# export OPENAI_API_KEY="your-openai-api-key-here"
+# export GITHUB_TOKEN="your-github-personal-access-token"
+# export ANTHROPIC_API_KEY="your-anthropic-api-key-here"
+
+# Personal cloud configurations
+# export AWS_ACCESS_KEY_ID="your-aws-access-key"
+# export AWS_SECRET_ACCESS_KEY="your-aws-secret-key"
+
+# Personal database connections
+# export PERSONAL_DB_PASSWORD="your-database-password"
+
+# SSH key passphrases (if using ssh-agent)
+# ssh-add ~/.ssh/id_rsa 2>/dev/null
+
+# Personal aliases for sensitive operations
+# alias backup-personal="rsync -av $HOME/Documents/ user@backup-server:/backups/"
+
+# GPG configuration
+# export GPG_TTY=$(tty)
+
+# Personal services
+# export PERSONAL_DOMAIN="yourdomain.com"
+# export PERSONAL_EMAIL="you@yourdomain.com"

@@ -1,0 +1,236 @@
+#!/bin/bash
+
+# SSH Key Management Helper Script
+# Safe utilities for managing SSH keys without disrupting existing setup
+
+set -e
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+show_help() {
+    echo -e "${BLUE}🔑 SSH Key Management Helper${NC}"
+    echo "==============================="
+    echo
+    echo "Usage: $0 [command] [options]"
+    echo
+    echo -e "${GREEN}Available commands:${NC}"
+    echo "  list           - List all SSH keys"
+    echo "  test <host>    - Test SSH connection to a host"
+    echo "  info           - Show SSH client information"
+    echo "  keygen         - Generate a new SSH key (interactive)"
+    echo "  fingerprint    - Show fingerprints of all keys"
+    echo "  agent          - Check SSH agent status"
+    echo "  backup         - Backup SSH keys to a safe location"
+    echo
+    echo -e "${GREEN}Examples:${NC}"
+    echo "  $0 list                    # List all your SSH keys"
+    echo "  $0 test github.com         # Test connection to GitHub"
+    echo "  $0 fingerprint             # Show key fingerprints"
+    echo "  $0 keygen                  # Generate new key (interactive)"
+}
+
+list_keys() {
+    echo -e "${BLUE}🔑 SSH Keys in ~/.ssh/${NC}"
+    echo "======================"
+    
+    if [[ -d ~/.ssh ]]; then
+        echo -e "${YELLOW}Private keys:${NC}"
+        find ~/.ssh -name "id_*" -not -name "*.pub" -type f 2>/dev/null | sort | while read -r key; do
+            if [[ -f "$key" ]]; then
+                echo "  $(basename "$key")"
+                # Show key type and fingerprint safely
+                ssh-keygen -l -f "$key" 2>/dev/null | sed 's/^/    /' || echo "    (Could not read key)"
+            fi
+        done
+        
+        echo
+        echo -e "${YELLOW}Public keys:${NC}"
+        find ~/.ssh -name "*.pub" -type f 2>/dev/null | sort | while read -r key; do
+            if [[ -f "$key" ]]; then
+                echo "  $(basename "$key")"
+                ssh-keygen -l -f "$key" 2>/dev/null | sed 's/^/    /' || echo "    (Could not read key)"
+            fi
+        done
+    else
+        echo -e "${RED}No ~/.ssh directory found${NC}"
+    fi
+}
+
+test_connection() {
+    local host="$1"
+    if [[ -z "$host" ]]; then
+        echo -e "${RED}Please specify a host to test${NC}"
+        echo "Example: $0 test github.com"
+        return 1
+    fi
+    
+    echo -e "${BLUE}🔌 Testing SSH connection to $host${NC}"
+    echo "================================="
+    
+    # Test connection with verbose output
+    ssh -T -o ConnectTimeout=10 -o BatchMode=yes "$host" 2>&1 || {
+        echo -e "${YELLOW}Connection test completed (exit code may be normal for some services)${NC}"
+    }
+}
+
+show_info() {
+    echo -e "${BLUE}ℹ️  SSH Client Information${NC}"
+    echo "========================="
+    
+    echo -e "${YELLOW}SSH version:${NC}"
+    ssh -V 2>&1 | head -1
+    
+    echo
+    echo -e "${YELLOW}SSH config locations:${NC}"
+    echo "  System: /etc/ssh/ssh_config"
+    echo "  User: ~/.ssh/config $(test -f ~/.ssh/config && echo '(exists)' || echo '(not found)')"
+    
+    echo
+    echo -e "${YELLOW}SSH directory:${NC}"
+    ls -la ~/.ssh/ 2>/dev/null | head -10 || echo "  No ~/.ssh directory"
+}
+
+generate_key() {
+    echo -e "${BLUE}🔐 SSH Key Generation${NC}"
+    echo "===================="
+    echo
+    echo -e "${YELLOW}This will help you generate a new SSH key safely.${NC}"
+    echo -e "${YELLOW}Your existing keys will NOT be touched.${NC}"
+    echo
+    
+    # Get key details
+    read -p "Enter a name for this key (e.g., 'work', 'personal', 'server'): " key_name
+    if [[ -z "$key_name" ]]; then
+        echo -e "${RED}Key name required${NC}"
+        return 1
+    fi
+    
+    read -p "Enter your email address: " email
+    if [[ -z "$email" ]]; then
+        echo -e "${RED}Email address required${NC}"
+        return 1
+    fi
+    
+    local key_file="$HOME/.ssh/id_ed25519_$key_name"
+    
+    # Check if key already exists
+    if [[ -f "$key_file" ]]; then
+        echo -e "${RED}Key already exists: $key_file${NC}"
+        read -p "Overwrite? (y/N): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            echo "Cancelled"
+            return 1
+        fi
+    fi
+    
+    # Generate the key
+    echo -e "${BLUE}Generating Ed25519 key...${NC}"
+    ssh-keygen -t ed25519 -C "$email" -f "$key_file"
+    
+    echo
+    echo -e "${GREEN}✅ Key generated successfully!${NC}"
+    echo -e "${YELLOW}Private key:${NC} $key_file"
+    echo -e "${YELLOW}Public key:${NC} $key_file.pub"
+    echo
+    echo -e "${YELLOW}Public key content (copy this to servers/GitHub):${NC}"
+    cat "$key_file.pub"
+}
+
+show_fingerprints() {
+    echo -e "${BLUE}🔍 SSH Key Fingerprints${NC}"
+    echo "======================"
+    
+    find ~/.ssh -name "*.pub" -type f 2>/dev/null | sort | while read -r key; do
+        if [[ -f "$key" ]]; then
+            echo -e "${YELLOW}$(basename "$key"):${NC}"
+            ssh-keygen -l -f "$key" 2>/dev/null | sed 's/^/  /' || echo "  (Could not read key)"
+            echo
+        fi
+    done
+}
+
+check_agent() {
+    echo -e "${BLUE}🤖 SSH Agent Status${NC}"
+    echo "=================="
+    
+    if [[ -n "$SSH_AGENT_PID" ]]; then
+        echo -e "${GREEN}✅ SSH Agent is running (PID: $SSH_AGENT_PID)${NC}"
+        
+        echo
+        echo -e "${YELLOW}Loaded keys:${NC}"
+        ssh-add -l 2>/dev/null | sed 's/^/  /' || echo "  No keys loaded"
+    else
+        echo -e "${YELLOW}⚠️  SSH Agent not detected${NC}"
+        echo "To start SSH agent:"
+        echo "  eval \$(ssh-agent -s)"
+        echo "  ssh-add ~/.ssh/id_ed25519  # Add your key"
+    fi
+}
+
+backup_keys() {
+    echo -e "${BLUE}💾 SSH Keys Backup${NC}"
+    echo "=================="
+    
+    local backup_dir="$HOME/ssh-backup-$(date +%Y%m%d-%H%M%S)"
+    
+    echo -e "${YELLOW}Creating backup directory: $backup_dir${NC}"
+    mkdir -p "$backup_dir"
+    
+    # Copy SSH directory (excluding sensitive system files)
+    if [[ -d ~/.ssh ]]; then
+        cp -r ~/.ssh "$backup_dir/" 2>/dev/null || {
+            echo -e "${YELLOW}Some files could not be copied (this is normal for system files)${NC}"
+        }
+        
+        # Set proper permissions on backup
+        chmod 700 "$backup_dir/.ssh"
+        chmod 600 "$backup_dir/.ssh"/* 2>/dev/null || true
+        
+        echo -e "${GREEN}✅ Backup created: $backup_dir${NC}"
+        echo -e "${YELLOW}Files backed up:${NC}"
+        ls -la "$backup_dir/.ssh/" | sed 's/^/  /'
+    else
+        echo -e "${RED}No ~/.ssh directory to backup${NC}"
+        rmdir "$backup_dir"
+    fi
+}
+
+# Main command dispatcher
+case "${1:-help}" in
+    "list")
+        list_keys
+        ;;
+    "test")
+        test_connection "$2"
+        ;;
+    "info")
+        show_info
+        ;;
+    "keygen")
+        generate_key
+        ;;
+    "fingerprint")
+        show_fingerprints
+        ;;
+    "agent")
+        check_agent
+        ;;
+    "backup")
+        backup_keys
+        ;;
+    "help"|"-h"|"--help")
+        show_help
+        ;;
+    *)
+        echo -e "${RED}Unknown command: $1${NC}"
+        echo
+        show_help
+        exit 1
+        ;;
+esac

@@ -1,0 +1,38 @@
+// Work Project Layout (for your Xerador project)
+// Usage: zellij --layout work
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    
+    pane split_direction="horizontal" {
+        // Project terminal
+        pane size="50%" {
+            name "project"
+            cwd "/Users/bernardobotellacorbi/Documents/dev/data-services-control-plane"
+        }
+        
+        pane size="50%" split_direction="vertical" {
+            // Cassandra management
+            pane {
+                name "cassandra"
+                cwd "/Users/bernardobotellacorbi/Documents/dev/data-services-control-plane"
+            }
+            
+            // Build/deploy
+            pane {
+                name "build"
+                cwd "/Users/bernardobotellacorbi/Documents/dev/data-services-control-plane"
+            }
+            
+            // Logs/monitoring
+            pane {
+                name "logs"
+            }
+        }
+    }
+    
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

@@ -1,0 +1,48 @@
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Format: <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+#
+# --- COMMIT MESSAGE GUIDELINES ---
+# 
+# Type (required):
+#   feat     - New feature
+#   fix      - Bug fix  
+#   docs     - Documentation changes
+#   style    - Code style changes (formatting, etc)
+#   refactor - Code refactoring
+#   test     - Adding or updating tests
+#   chore    - Maintenance tasks, dependency updates
+#   perf     - Performance improvements
+#   build    - Build system changes
+#   ci       - CI/CD changes
+#
+# Scope (optional):
+#   The scope of the change (component, file, feature area)
+#   Examples: (api), (ui), (auth), (database)
+#
+# Subject (required):
+#   - Use imperative mood: "Add feature" not "Added feature"
+#   - Keep under 50 characters
+#   - No period at the end
+#   - Capitalize first letter
+#
+# Body (optional):
+#   - Explain what and why, not how
+#   - Wrap at 72 characters
+#   - Leave blank line after subject
+#
+# Footer (optional):
+#   - Reference issues: "Closes #123" or "Fixes #456"
+#   - Breaking changes: "BREAKING CHANGE: description"
+#
+# Examples:
+#   feat(auth): add OAuth2 login support
+#   fix(api): handle null response in user endpoint
+#   docs: update installation instructions
+#   refactor(database): simplify connection pooling
+#   test(auth): add unit tests for login validation

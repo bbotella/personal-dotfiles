@@ -1,0 +1,31 @@
+[user]
+    # Work-specific email and name
+    # TODO: Replace with your work email and preferred work name
+    email = your.work.email@company.com
+    name = Your Work Name
+
+[core]
+    # Work-specific SSH key (if different)
+    sshCommand = ssh -i ~/.ssh/id_rsa_work
+
+[commit]
+    # Enable GPG signing for work commits (optional)
+    # gpgsign = true
+
+[push]
+    # More conservative push settings for work
+    default = upstream
+
+# Work-specific aliases for common tasks
+[alias]
+    # Xerador project shortcuts
+    xerador = "!cd ~/Documents/dev/data-services-control-plane"
+    xst = "!cd ~/Documents/dev/data-services-control-plane && git status"
+    xlg = "!cd ~/Documents/dev/data-services-control-plane && git lg"
+    xbuild = "!cd ~/Documents/dev/data-services-control-plane && ./gradlew build"
+    xtest = "!cd ~/Documents/dev/data-services-control-plane && ./gradlew test"
+    
+    # Common work patterns
+    feature = "!f() { git checkout -b feature/$1; }; f"
+    hotfix = "!f() { git checkout -b hotfix/$1; }; f"
+    release = "!f() { git checkout -b release/$1; }; f"

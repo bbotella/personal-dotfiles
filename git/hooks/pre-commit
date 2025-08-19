@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Pre-commit hook to prevent commits to main/master branches
+# To install: copy to .git/hooks/pre-commit and make executable
+
+protected_branches="main master"
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+for branch in $protected_branches; do
+    if [ "$current_branch" = "$branch" ]; then
+        echo "🚫 Direct commits to '$branch' branch are not allowed!"
+        echo "💡 Create a feature branch instead:"
+        echo "   git checkout -b feature/your-feature-name"
+        echo "   # make your changes"
+        echo "   git add ."
+        echo "   git commit -m 'your message'"
+        echo "   git push -u origin feature/your-feature-name"
+        exit 1
+    fi
+done
+
+# Check for potential secrets in staged files
+echo "🔍 Checking for potential secrets..."
+
+# Patterns to check for (add more as needed)
+secret_patterns=(
+    "password\s*=\s*['\"][^'\"]*['\"]"
+    "api[_-]?key\s*=\s*['\"][^'\"]*['\"]"
+    "secret\s*=\s*['\"][^'\"]*['\"]"
+    "token\s*=\s*['\"][^'\"]*['\"]"
+    "-----BEGIN (RSA )?PRIVATE KEY-----"
+)
+
+# Check staged files for secrets
+for pattern in "${secret_patterns[@]}"; do
+    if git diff --cached --name-only -z | xargs -0 grep -i -E "$pattern" 2>/dev/null; then
+        echo "🚨 Potential secret detected in staged files!"
+        echo "🔒 Please remove sensitive data before committing."
+        exit 1
+    fi
+done
+
+echo "✅ Pre-commit checks passed"
+exit 0

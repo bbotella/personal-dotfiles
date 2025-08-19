@@ -1,0 +1,42 @@
+// System Administration Layout
+// Usage: zellij --layout sysadmin
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    
+    pane split_direction="vertical" {
+        // Main terminal for commands
+        pane size="60%" {
+            name "main"
+        }
+        
+        pane split_direction="horizontal" size="40%" {
+            // System monitoring
+            pane {
+                name "monitor"
+                command "btop"
+            }
+            
+            // Logs/services
+            pane {
+                name "logs"
+            }
+        }
+    }
+    
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
+
+// Optional floating pane for quick commands
+floating_panes {
+    pane {
+        name "quick-cmd"
+        width "50%"
+        height "30%"
+        x "25%"
+        y "35%"
+    }
+}

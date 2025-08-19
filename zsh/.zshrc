@@ -10,9 +10,11 @@ fi
 
 zmodload zsh/zprof
 
-if [[ -f $HOME/.aliases.sh ]]; then
-  source $HOME/.aliases.sh
-fi
+# source antidote
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+antidote load
+
+# Load configuration files (aliases will be loaded at the end to override plugins)
 
 if [[ -f $HOME/.exports.sh ]]; then
   source $HOME/.exports.sh
@@ -25,11 +27,6 @@ fi
 if [[ -f $HOME/.private.sh ]]; then
   source $HOME/.private.sh
 fi
-
-# source antidote
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
-# antidote load 2>/dev/null
-antidote load
 
 #bindkey '^[b' backward-word
 #bindkey '^[f' forward-word
@@ -86,3 +83,21 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
+
+## Support .envrc files: https://direnv.net/docs/hook.html
+eval "$(direnv hook zsh)"
+
+
+## defines helpful shell functions; `xjdk` for info; `xjdk 17` to set JDK17; `xjdk register` to find new JDKs
+XERADOR_PROJECT_PATH="/Users/bernardobotellacorbi/Documents/dev/data-services-control-plane";
+[[ -r ${XERADOR_PROJECT_PATH}/bin/shellFunctions.rc ]] && source ${XERADOR_PROJECT_PATH}/bin/shellFunctions.rc
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# Load aliases at the very end to ensure they override any plugin aliases
+if [[ -f $HOME/.aliases.sh ]]; then
+  source $HOME/.aliases.sh
+fi

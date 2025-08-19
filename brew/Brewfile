@@ -1,127 +1,145 @@
+# =============================================================================
+# Homebrew Bundle Configuration
+# =============================================================================
+# Generate: brew bundle dump --force --file=brew/Brewfile
+# Install: brew bundle install --file=brew/Brewfile
+# Check:   brew bundle check --file=brew/Brewfile
+
+# =============================================================================
+# Taps (Third-party repositories)
+# =============================================================================
 tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-brew "antidote"
-brew "autojump"
-brew "ccm"
-brew "diff-so-fancy"
-brew "docker"
-brew "docker-buildx"
-brew "docker-compose"
-brew "fzf"
-brew "kubernetes-cli"
-brew "pipx"
-brew "python@3.11"
-brew "stow"
-brew "zoxide"
-brew "zsh-autocomplete"
-brew "zsh-autosuggestions"
-cask "alfred"
-brew "ffmpeg"
-brew "yt-dlp"
-brew "jq"
-brew "jesseduffield/lazydocker/lazydocker"
-brew "tmux"
-brew "neovim"
-brew "bat"
-brew "eza"
-brew "virtualenvwrapper"
-brew "fd"
-brew "btop"
-brew "tlrc"
-brew "jless"
-brew "zellij"
-brew "ant"
-brew "lazygit"
-brew "ripgrep"
-brew "yazi"
-brew "ffmpegthumbnailer"
-brew "unar"
-brew "poppler"
-cask "adobe-creative-cloud"
-cask "discord"
-cask "font-0xproto-nerd-font"
-cask "font-3270-nerd-font"
-cask "font-agave-nerd-font"
-cask "font-anonymice-nerd-font"
-cask "font-arimo-nerd-font"
-cask "font-aurulent-sans-mono-nerd-font"
-cask "font-bigblue-terminal-nerd-font"
-cask "font-bitstream-vera-sans-mono-nerd-font"
-cask "font-blex-mono-nerd-font"
-cask "font-caskaydia-cove-nerd-font"
-cask "font-caskaydia-mono-nerd-font"
-cask "font-code-new-roman-nerd-font"
-cask "font-comic-shanns-mono-nerd-font"
-cask "font-commit-mono-nerd-font"
-cask "font-cousine-nerd-font"
-cask "font-d2coding-nerd-font"
-cask "font-daddy-time-mono-nerd-font"
-cask "font-dejavu-sans-mono-nerd-font"
-cask "font-droid-sans-mono-nerd-font"
-cask "font-envy-code-r-nerd-font"
-cask "font-fantasque-sans-mono-nerd-font"
-cask "font-fira-code-nerd-font"
-cask "font-fira-mono-nerd-font"
-cask "font-geist-mono-nerd-font"
-cask "font-go-mono-nerd-font"
-cask "font-gohufont-nerd-font"
-cask "font-hack-nerd-font"
-cask "font-hasklug-nerd-font"
-cask "font-heavy-data-nerd-font"
-cask "font-hurmit-nerd-font"
-cask "font-im-writing-nerd-font"
-cask "font-inconsolata-go-nerd-font"
-cask "font-inconsolata-lgc-nerd-font"
-cask "font-inconsolata-nerd-font"
-cask "font-intone-mono-nerd-font"
-cask "font-iosevka-nerd-font"
-cask "font-iosevka-term-nerd-font"
-cask "font-iosevka-term-slab-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
-cask "font-lekton-nerd-font"
-cask "font-liberation-nerd-font"
-cask "font-lilex-nerd-font"
-cask "font-martian-mono-nerd-font"
-cask "font-meslo-lg-nerd-font"
-cask "font-monaspace-nerd-font"
-cask "font-monocraft-nerd-font"
-cask "font-monofur-nerd-font"
-cask "font-monoid-nerd-font"
-cask "font-mononoki-nerd-font"
-cask "font-mplus-nerd-font"
-cask "font-noto-nerd-font"
-cask "font-open-dyslexic-nerd-font"
-cask "font-overpass-nerd-font"
-cask "font-profont-nerd-font"
-cask "font-proggy-clean-tt-nerd-font"
-cask "font-roboto-mono-nerd-font"
-cask "font-sauce-code-pro-nerd-font"
-cask "font-shure-tech-mono-nerd-font"
-cask "font-space-mono-nerd-font"
-cask "font-symbols-only-nerd-font"
-cask "font-terminess-ttf-nerd-font"
-cask "font-tinos-nerd-font"
-cask "font-ubuntu-mono-nerd-font"
-cask "font-ubuntu-nerd-font"
-cask "font-victor-mono-nerd-font"
-cask "iterm2"
-cask "jetbrains-toolbox"
-cask "kaleidoscope"
-cask "postman"
-cask "qfinder-pro"
-cask "rode-central"
-cask "sublime-merge"
-cask "sublime-text"
-cask "telegram"
-cask "topaz-video-ai"
-cask "tower"
-cask "vlc"
-cask "whatsapp"
-cask "insta360-studio"
-cask "elgato-control-center"
-cask "messenger"
-cask "slack"
-cask "zed"
-cask "wezterm"
-cask "obsidian"
+tap "jesseduffield/lazydocker"
+
+# =============================================================================
+# System & Shell Essentials
+# =============================================================================
+brew "stow"                    # Symlink farm manager for dotfiles
+brew "antidote"                # Fast zsh plugin manager
+brew "zsh-autocomplete"        # Real-time zsh completions
+brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
+
+# =============================================================================
+# Terminal & Multiplexers
+# =============================================================================
+brew "tmux"                    # Terminal multiplexer
+brew "zellij"                  # Modern terminal workspace
+
+# =============================================================================
+# Navigation & File Management
+# =============================================================================
+brew "fzf"                     # Fuzzy finder
+brew "zoxide"                  # Smart cd replacement
+brew "autojump"                # Quick directory jumping
+brew "fd"                      # Fast find alternative
+brew "ripgrep"                 # Fast grep alternative
+brew "bat"                     # Cat with syntax highlighting
+brew "eza"                     # Modern ls replacement
+brew "yazi"                    # Terminal file manager
+brew "jless"                   # JSON viewer
+
+# =============================================================================
+# Development Tools
+# =============================================================================
+brew "neovim"                  # Modern vim
+brew "git"                     # Version control (if not already installed)
+brew "git-delta"               # Better git diffs with syntax highlighting
+brew "diff-so-fancy"           # Alternative git diff tool
+brew "jq"                      # JSON processor
+brew "btop"                    # System monitor
+brew "tlrc"                    # TL;DR pages client
+
+# =============================================================================
+# Container & Cloud Tools
+# =============================================================================
+brew "docker"                 # Container platform
+brew "docker-buildx"          # Docker build extensions
+brew "docker-compose"         # Multi-container Docker applications
+brew "kubernetes-cli"         # Kubernetes command-line tool
+brew "lazydocker"             # Docker TUI
+brew "lazygit"                # Git TUI
+
+# =============================================================================
+# Media & File Processing
+# =============================================================================
+brew "ffmpeg"                 # Media processing
+brew "ffmpegthumbnailer"      # Video thumbnail generator
+brew "yt-dlp"                 # YouTube downloader
+brew "unar"                   # Archive extractor
+brew "poppler"                # PDF utilities
+
+# =============================================================================
+# Programming Languages & Package Managers
+# =============================================================================
+brew "python@3.11"           # Python 3.11
+brew "pipx"                   # Python package installer
+brew "virtualenvwrapper"     # Python virtual environment wrapper
+brew "ant"                    # Java build tool
+
+# =============================================================================
+# Database & Testing
+# =============================================================================
+brew "ccm"                    # Cassandra Cluster Manager
+
+# =============================================================================
+# Essential Fonts (Curated Selection)
+# =============================================================================
+# Only keeping the most popular and useful programming fonts
+cask "font-jetbrains-mono-nerd-font"    # JetBrains Mono (excellent for coding)
+cask "font-fira-code-nerd-font"         # Fira Code (popular with ligatures)
+cask "font-hack-nerd-font"              # Hack (clean, readable)
+cask "font-meslo-lg-nerd-font"          # Meslo LG (good for terminals)
+cask "font-sauce-code-pro-nerd-font"    # Source Code Pro (Adobe's font)
+cask "font-ubuntu-mono-nerd-font"       # Ubuntu Mono (clean, modern)
+cask "font-inconsolata-nerd-font"       # Inconsolata (classic programming font)
+cask "font-monaspace-nerd-font"         # Monaspace (GitHub's new font family)
+
+# =============================================================================
+# Development Applications
+# =============================================================================
+cask "alfred"                 # Productivity app
+cask "iterm2"                 # Terminal emulator
+cask "wezterm"               # GPU-accelerated terminal
+cask "jetbrains-toolbox"     # JetBrains IDE manager
+cask "sublime-text"          # Text editor
+cask "sublime-merge"         # Git client
+cask "zed"                   # Modern code editor
+cask "tower"                 # Git client
+cask "kaleidoscope"          # File comparison tool
+cask "postman"               # API testing
+
+# =============================================================================
+# Productivity & Utilities
+# =============================================================================
+cask "obsidian"              # Note-taking
+cask "qfinder-pro"           # File search utility
+
+# =============================================================================
+# Media & Creative Tools
+# =============================================================================
+cask "adobe-creative-cloud"  # Adobe Creative Suite
+cask "vlc"                   # Media player
+cask "topaz-video-ai"        # Video enhancement
+cask "insta360-studio"       # 360 camera software
+cask "elgato-control-center" # Elgato device control
+cask "rode-central"          # Rode microphone control
+
+# =============================================================================
+# Communication
+# =============================================================================
+cask "discord"               # Gaming/community chat
+cask "telegram"              # Messaging
+cask "whatsapp"              # Messaging
+cask "messenger"             # Facebook Messenger
+cask "slack"                 # Team communication
+
+# =============================================================================
+# Mac App Store Applications
+# =============================================================================
+# Uncomment and add your Mac App Store apps here
+# mas "Xcode", id: 497799835
+# mas "TestFlight", id: 899247664
+# mas "Amphetamine", id: 937984704
+# mas "The Unarchiver", id: 425424353

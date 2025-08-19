@@ -11,3 +11,14 @@ export SYSTEM=$(uname -s)
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+OLLAMA_API_BASE=0.0.0.0:11211
+OLLAMA_CORS=true
+OLLAMA_FLASH_ATTENTION=1
+OLLAMA_HOST=0.0.0.0
+OLLAMA_KEEP_ALIVE=3600
+OLLAMA_KV_CACHE_TYPE=q8_0
+OLLAMA_ORIGINS='*'
+
+# uv
+export PATH="/Users/bernardobotellacorbi/.local/bin:$PATH"

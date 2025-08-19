@@ -1,0 +1,115 @@
+# SSH Configuration Templates and Enhancements
+# 
+# IMPORTANT: This file is a TEMPLATE and examples only.
+# Your existing ~/.ssh/config is completely preserved and untouched.
+#
+# To use these enhancements:
+# 1. Review the templates below
+# 2. Copy any useful sections to your existing ~/.ssh/config
+# 3. Or use the include method shown at the bottom
+
+# =============================================================================
+# Performance Optimizations (Safe to add to existing config)
+# =============================================================================
+
+# Global SSH client optimizations
+Host *
+    # Connection multiplexing - reuse connections for speed
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    ControlPersist 600
+    
+    # Keep connections alive
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    
+    # Security improvements
+    Protocol 2
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+    MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group16-sha512
+    
+    # Disable weak algorithms
+    PubkeyAcceptedKeyTypes +ssh-rsa
+    HostKeyAlgorithms ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-rsa
+
+# =============================================================================
+# Example Host Configurations (TEMPLATES - Customize as needed)
+# =============================================================================
+
+# Example: Development server
+# Host dev
+#     HostName dev.example.com
+#     User your-username
+#     Port 22
+#     IdentityFile ~/.ssh/id_ed25519
+#     ForwardAgent yes
+
+# Example: Staging server
+# Host staging  
+#     HostName staging.example.com
+#     User deploy
+#     Port 22
+#     IdentityFile ~/.ssh/id_ed25519
+#     StrictHostKeyChecking yes
+
+# Example: Production server (extra secure)
+# Host prod
+#     HostName prod.example.com
+#     User readonly
+#     Port 2222
+#     IdentityFile ~/.ssh/id_ed25519_prod
+#     StrictHostKeyChecking yes
+#     UserKnownHostsFile ~/.ssh/known_hosts_prod
+
+# Example: Jump host configuration
+# Host internal-server
+#     HostName internal.company.com
+#     User your-username
+#     ProxyJump bastion.company.com
+#     IdentityFile ~/.ssh/id_ed25519
+
+# Example: Different GitHub accounts
+# Host github-work
+#     HostName github.com
+#     User git
+#     IdentityFile ~/.ssh/id_ed25519_work
+#     IdentitiesOnly yes
+
+# Host github-personal
+#     HostName github.com  
+#     User git
+#     IdentityFile ~/.ssh/id_ed25519
+#     IdentitiesOnly yes
+
+# =============================================================================
+# Local Development (Safe examples)
+# =============================================================================
+
+# Example: Local Docker containers
+# Host docker-dev
+#     HostName localhost
+#     Port 2222
+#     User root
+#     IdentityFile ~/.ssh/id_ed25519
+#     StrictHostKeyChecking no
+#     UserKnownHostsFile /dev/null
+
+# Example: Local VM
+# Host vm-ubuntu
+#     HostName 192.168.1.100
+#     User ubuntu
+#     IdentityFile ~/.ssh/id_ed25519
+#     StrictHostKeyChecking no
+
+# =============================================================================
+# How to Use These Templates Safely
+# =============================================================================
+
+# OPTION 1: Copy sections to your existing ~/.ssh/config manually
+
+# OPTION 2: Use SSH includes (add this ONE LINE to your existing ~/.ssh/config)
+# Include ~/.ssh/config-dotfiles
+
+# Then this file would be renamed to ~/.ssh/config-dotfiles
+# This keeps your existing config completely separate and safe!

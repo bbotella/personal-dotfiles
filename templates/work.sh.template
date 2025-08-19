@@ -1,0 +1,31 @@
+# Work-specific configuration template
+# Copy this file to ~/.work.sh and customize for your work environment
+
+# Work project paths
+# export WORK_PROJECT_PATH="$HOME/work/main-project"
+# export WORK_TOOLS_PATH="$HOME/work/tools"
+
+# Work-specific aliases
+# alias work-deploy="cd $WORK_PROJECT_PATH && ./deploy.sh"
+# alias work-logs="tail -f $WORK_PROJECT_PATH/logs/app.log"
+
+# Work environment variables
+# export WORK_ENV="development"
+# export WORK_API_URL="https://api-dev.company.com"
+
+# Work-specific PATH additions
+# export PATH="$WORK_TOOLS_PATH/bin:$PATH"
+
+# Database connections (use environment-specific values)
+# export DB_HOST="localhost"
+# export DB_PORT="5432"
+# export DB_NAME="work_database"
+
+# Cloud provider configurations
+# export AWS_PROFILE="work"
+# export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/work-service-account.json"
+
+# Load work-specific functions if they exist
+# if [[ -f "$WORK_PROJECT_PATH/bin/work-functions.sh" ]]; then
+#     source "$WORK_PROJECT_PATH/bin/work-functions.sh"
+# fi

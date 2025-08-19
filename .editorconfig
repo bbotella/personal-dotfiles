@@ -1,0 +1,202 @@
+# EditorConfig helps maintain consistent coding styles for multiple developers
+# working on the same project across various editors and IDEs.
+# See https://editorconfig.org for more information.
+
+# This is the top-most EditorConfig file
+root = true
+
+# =============================================================================
+# Default settings for all files
+# =============================================================================
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# =============================================================================
+# Language-specific settings
+# =============================================================================
+
+# Java, Kotlin, Gradle (common in your Cassandra work)
+[*.{java,kt,gradle,groovy}]
+indent_size = 4
+max_line_length = 120
+
+# Gradle wrapper and build files
+[{gradlew,gradlew.bat,*.gradle,*.gradle.kts}]
+indent_size = 4
+
+# Python
+[*.{py,pyi}]
+indent_size = 4
+max_line_length = 88
+
+# JavaScript, TypeScript, JSON
+[*.{js,ts,jsx,tsx,json,jsonc}]
+indent_size = 2
+max_line_length = 100
+
+# YAML (Docker Compose, CI/CD, Kubernetes)
+[*.{yml,yaml}]
+indent_size = 2
+quote_type = double
+
+# XML, HTML
+[*.{xml,html,xhtml}]
+indent_size = 2
+
+# CSS, SCSS, LESS
+[*.{css,scss,sass,less,styl}]
+indent_size = 2
+
+# Shell scripts
+[*.{sh,bash,zsh,fish}]
+indent_size = 2
+end_of_line = lf
+
+# Go
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# Rust
+[*.{rs,toml}]
+indent_size = 4
+max_line_length = 100
+
+# C/C++
+[*.{c,cpp,cc,cxx,h,hpp,hxx}]
+indent_size = 4
+max_line_length = 100
+
+# Ruby
+[*.{rb,rake,gemspec}]
+indent_size = 2
+
+# PHP
+[*.{php,phtml}]
+indent_size = 4
+
+# Swift
+[*.swift]
+indent_size = 4
+
+# =============================================================================
+# Configuration files
+# =============================================================================
+
+# Package managers
+[{package.json,composer.json,Pipfile,pyproject.toml,Cargo.toml,pom.xml}]
+indent_size = 2
+
+# Docker
+[{Dockerfile,Dockerfile.*,docker-compose*.yml}]
+indent_size = 2
+
+# Kubernetes
+[*.{k8s.yml,k8s.yaml}]
+indent_size = 2
+
+# Terraform
+[*.{tf,tfvars}]
+indent_size = 2
+
+# =============================================================================
+# Documentation and Markup
+# =============================================================================
+
+# Markdown (don't trim trailing whitespace - used for line breaks)
+[*.{md,mdx}]
+trim_trailing_whitespace = false
+max_line_length = 80
+
+# reStructuredText
+[*.{rst,rest}]
+indent_size = 3
+max_line_length = 80
+
+# AsciiDoc
+[*.{adoc,asciidoc}]
+max_line_length = 80
+
+# LaTeX
+[*.{tex,latex}]
+indent_size = 2
+max_line_length = 80
+
+# =============================================================================
+# Build and configuration files
+# =============================================================================
+
+# Makefiles require tabs
+[{Makefile,makefile,*.mk,GNUmakefile}]
+indent_style = tab
+indent_size = 4
+
+# CMake
+[{CMakeLists.txt,*.cmake}]
+indent_size = 2
+
+# Meson
+[{meson.build,meson_options.txt}]
+indent_size = 2
+
+# Bazel
+[{BUILD,BUILD.bazel,WORKSPACE,*.bzl}]
+indent_size = 4
+
+# =============================================================================
+# Version control and CI/CD
+# =============================================================================
+
+# Git
+[.git*]
+end_of_line = lf
+
+# GitHub Actions
+[.github/workflows/*.{yml,yaml}]
+indent_size = 2
+
+# GitLab CI
+[.gitlab-ci.yml]
+indent_size = 2
+
+# Travis CI
+[.travis.yml]
+indent_size = 2
+
+# Jenkins
+[Jenkinsfile]
+indent_size = 2
+
+# =============================================================================
+# IDE and Editor specific
+# =============================================================================
+
+# VS Code
+[.vscode/*.json]
+indent_size = 2
+
+# JetBrains (useful for your Java development)
+[.idea/**/*.xml]
+indent_size = 2
+
+# Vim
+[.vimrc]
+indent_size = 2
+
+# =============================================================================
+# Specific file patterns
+# =============================================================================
+
+# Configuration files that should use 2 spaces
+[{*.conf,*.config,*.ini,*.cfg,*rc}]
+indent_size = 2
+
+# Log files (no trimming)
+[*.{log,logs}]
+insert_final_newline = false
+trim_trailing_whitespace = false

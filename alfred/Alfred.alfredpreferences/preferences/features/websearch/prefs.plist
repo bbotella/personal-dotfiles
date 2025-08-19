@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>A82BFF85-EBDA-41A3-98C6-CD9356B560D5</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ai</string>
+			<key>text</key>
+			<string>Apache Issue</string>
+			<key>url</key>
+			<string>https://issues.apache.org/jira/browse/{query}</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

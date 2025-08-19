@@ -1,0 +1,38 @@
+// Development Support Layout (for occasional terminal coding)
+// Usage: zellij --layout dev
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    
+    pane split_direction="vertical" {
+        // Main work area
+        pane size="70%" {
+            name "editor"
+        }
+        
+        // Side utilities
+        pane size="30%" split_direction="horizontal" {
+            // File browser
+            pane {
+                name "files"
+                command "yazi"
+            }
+            
+            // Git status/commands
+            pane {
+                name "git"
+                command "lazygit"
+            }
+            
+            // General terminal
+            pane {
+                name "terminal"
+            }
+        }
+    }
+    
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
