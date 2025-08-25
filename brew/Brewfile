@@ -50,6 +50,7 @@ brew "diff-so-fancy"           # Alternative git diff tool
 brew "jq"                      # JSON processor
 brew "btop"                    # System monitor
 brew "tlrc"                    # TL;DR pages client
+brew "direnv"                  # Environment variable management
 
 # =============================================================================
 # Container & Cloud Tools
@@ -100,8 +101,10 @@ cask "font-monaspace-nerd-font"         # Monaspace (GitHub's new font family)
 # Development Applications
 # =============================================================================
 cask "alfred"                 # Productivity app
+cask "raycast"                # Modern launcher and productivity tool
 cask "iterm2"                 # Terminal emulator
 cask "wezterm"               # GPU-accelerated terminal
+cask "visual-studio-code"    # Microsoft's code editor
 cask "jetbrains-toolbox"     # JetBrains IDE manager
 cask "sublime-text"          # Text editor
 cask "sublime-merge"         # Git client
