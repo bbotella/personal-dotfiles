@@ -12,6 +12,7 @@ tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazydocker"
+tap "control-theory/gonzo"
 
 # =============================================================================
 # System & Shell Essentials
@@ -51,6 +52,7 @@ brew "jq"                      # JSON processor
 brew "btop"                    # System monitor
 brew "tlrc"                    # TL;DR pages client
 brew "direnv"                  # Environment variable management
+brew "gonzo"                   # Terminal workspace and session manager
 
 # =============================================================================
 # Container & Cloud Tools
