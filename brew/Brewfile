@@ -80,6 +80,8 @@ brew "python@3.11"           # Python 3.11
 brew "pipx"                   # Python package installer
 brew "virtualenvwrapper"     # Python virtual environment wrapper
 brew "ant"                    # Java build tool
+brew "lua"                    # Lua programming language
+brew "rustup-init"            # Rust toolchain installer
 
 # =============================================================================
 # Database & Testing

@@ -22,3 +22,4 @@ OLLAMA_ORIGINS='*'
 
 # uv
 export PATH="/Users/bernardobotellacorbi/.local/bin:$PATH"
+. "$HOME/.cargo/env"
