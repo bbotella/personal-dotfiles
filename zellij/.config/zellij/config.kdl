@@ -153,7 +153,7 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
         bind "Ctrl q" { Quit; }
-        bind "Ctrl y" {
+        bind "Alt y" {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/harpoon.wasm" {
                 floating true
                 move_to_focused_tab true
@@ -264,6 +264,12 @@ plugins {
     tab-bar location="zellij:tab-bar"
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
+    }
+    harpoon location="file:~/.config/zellij/plugins/harpoon.wasm" {
+        _allow_exec_host_cmd true
+        _allow_open_file true
+        _allow_write_to_file true
+        _allow_read_file true
     }
 }
 
