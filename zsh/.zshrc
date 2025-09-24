@@ -101,3 +101,4 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 if [[ -f $HOME/.aliases.sh ]]; then
   source $HOME/.aliases.sh
 fi
+source <(acc --zsh-completions 2>/dev/null)

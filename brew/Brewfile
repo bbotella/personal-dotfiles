@@ -13,6 +13,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazydocker"
 tap "control-theory/gonzo"
+tap "charmbracelet/tap"
 
 # =============================================================================
 # System & Shell Essentials
@@ -53,6 +54,7 @@ brew "btop"                    # System monitor
 brew "tlrc"                    # TL;DR pages client
 brew "direnv"                  # Environment variable management
 brew "gonzo"                   # Terminal workspace and session manager
+brew "mods"                    # AI on the command line
 
 # =============================================================================
 # Container & Cloud Tools
