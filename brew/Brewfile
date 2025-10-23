@@ -22,6 +22,7 @@ brew "stow"                    # Symlink farm manager for dotfiles
 brew "antidote"                # Fast zsh plugin manager
 brew "zsh-autocomplete"        # Real-time zsh completions
 brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
+brew "carapace"                # Multi-shell completion generator
 
 # =============================================================================
 # Terminal & Multiplexers

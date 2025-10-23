@@ -87,6 +87,19 @@ _fzf_comprun() {
 ## Support .envrc files: https://direnv.net/docs/hook.html
 eval "$(direnv hook zsh)"
 
+## Carapace - multi-shell completion generator
+# https://carapace.sh
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # enable cross-shell completions
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+## fzf-tab configuration for interactive completions
+# https://github.com/Aloxaf/fzf-tab
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' prefix ''  # Remove prefix dot/indicator
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath | head -200'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --tree --color=always $realpath | head -200'
 
 ## defines helpful shell functions; `xjdk` for info; `xjdk 17` to set JDK17; `xjdk register` to find new JDKs
 XERADOR_PROJECT_PATH="/Users/bernardobotellacorbi/Documents/dev/data-services-control-plane";

@@ -15,6 +15,10 @@ ohmyzsh/ohmyzsh path:plugins/nvm
 ohmyzsh/ohmyzsh path:plugins/mvn
 ohmyzsh/ohmyzsh path:plugins/rbenv
 ohmyzsh/ohmyzsh path:plugins/jenv
+
+# Interactive tab completion with fzf
+Aloxaf/fzf-tab
+
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 
