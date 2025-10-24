@@ -93,6 +93,10 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # enable cross-shell compl
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
+# Disable carapace for specific commands
+compdef -d ls
+compdef -d eza
+
 ## fzf-tab configuration for interactive completions
 # https://github.com/Aloxaf/fzf-tab
 zstyle ':fzf-tab:*' fzf-command fzf
@@ -115,3 +119,9 @@ if [[ -f $HOME/.aliases.sh ]]; then
   source $HOME/.aliases.sh
 fi
 source <(acc --zsh-completions 2>/dev/null)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/personal-dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/personal-dotfiles/zsh/.p10k.zsh ]] || source ~/personal-dotfiles/zsh/.p10k.zsh
