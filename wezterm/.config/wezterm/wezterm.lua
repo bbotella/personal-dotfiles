@@ -18,7 +18,7 @@ config.font_size = 14.0
 config.bypass_mouse_reporting_modifiers = "CMD"
 
 -- Default program - auto-attach to last Zellij session or create new one
-config.default_prog = { "/opt/homebrew/bin/zellij", "attach", "--create", "Work" }
+config.default_prog = { "/opt/homebrew/bin/zellij", "attach", "--create", "Apple" }
 
 -- Don't ask for confirmation when closing
 config.window_close_confirmation = "NeverPrompt"
@@ -59,7 +59,7 @@ config.mouse_bindings = {
 -- Center window on startup with 70% of screen size
 wezterm.on("gui-startup", function(cmd)
   local screen = wezterm.gui.screens().active
-  local ratio = 0.7  -- 70% of the screen size
+  local ratio = 0.7 -- 70% of the screen size
   local width, height = screen.width * ratio, screen.height * ratio
   local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
   if window then

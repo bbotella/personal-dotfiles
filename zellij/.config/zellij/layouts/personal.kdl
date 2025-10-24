@@ -92,7 +92,7 @@ layout {
 
     default_tab_template {
         pane size=2 borderless=true {
-            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+            plugin location="https://github.com/dj95/zjstatus/releases/download/v0.21.1/zjstatus.wasm" {
                 format_left   "{mode}#[bg=#181926] {tabs}"
                 format_center ""
                 format_right  "{swap_layout}#[bg=#181926,fg=#494d64] Zellij: #[bg=#181926,fg=#494d64]{session}"
@@ -105,7 +105,7 @@ layout {
                 border_format   "#[fg=#6C7086]{char}"
                 border_position "top"
 
-                hide_frame_for_single_pane "true"
+                // hide_frame_for_single_pane "true"
 
                 mode_normal        "#[bg=#a6da95,fg=#181926,bold] NORMAL#[bg=#181926,fg=#a6da95]"
                 mode_locked        "#[bg=#6e738d,fg=#181926,bold] LOCKED #[bg=#181926,fg=#6e738d]"
